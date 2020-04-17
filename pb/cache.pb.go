@@ -178,6 +178,69 @@ func (x *SetRequest) GetValue() []byte {
 	return nil
 }
 
+type SetTTLRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	Ttl   int64  `protobuf:"varint,3,opt,name=ttl,proto3" json:"ttl,omitempty"`
+}
+
+func (x *SetTTLRequest) Reset() {
+	*x = SetTTLRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_cache_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetTTLRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetTTLRequest) ProtoMessage() {}
+
+func (x *SetTTLRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_cache_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetTTLRequest.ProtoReflect.Descriptor instead.
+func (*SetTTLRequest) Descriptor() ([]byte, []int) {
+	return file_pb_cache_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *SetTTLRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *SetTTLRequest) GetValue() []byte {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+func (x *SetTTLRequest) GetTtl() int64 {
+	if x != nil {
+		return x.Ttl
+	}
+	return 0
+}
+
 type SetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -187,7 +250,7 @@ type SetResponse struct {
 func (x *SetResponse) Reset() {
 	*x = SetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pb_cache_proto_msgTypes[3]
+		mi := &file_pb_cache_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -200,7 +263,7 @@ func (x *SetResponse) String() string {
 func (*SetResponse) ProtoMessage() {}
 
 func (x *SetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pb_cache_proto_msgTypes[3]
+	mi := &file_pb_cache_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -213,7 +276,7 @@ func (x *SetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetResponse.ProtoReflect.Descriptor instead.
 func (*SetResponse) Descriptor() ([]byte, []int) {
-	return file_pb_cache_proto_rawDescGZIP(), []int{3}
+	return file_pb_cache_proto_rawDescGZIP(), []int{4}
 }
 
 var File_pb_cache_proto protoreflect.FileDescriptor
@@ -228,16 +291,24 @@ var file_pb_cache_proto_rawDesc = []byte{
 	0x34, 0x0a, 0x0a, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a,
 	0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12,
 	0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05,
-	0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x0d, 0x0a, 0x0b, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x32, 0x6f, 0x0a, 0x05, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12, 0x32, 0x0a,
-	0x03, 0x47, 0x65, 0x74, 0x12, 0x14, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e,
-	0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61, 0x63,
-	0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x32, 0x0a, 0x03, 0x53, 0x65, 0x74, 0x12, 0x14, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65,
-	0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15,
-	0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x04, 0x5a, 0x02, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x49, 0x0a, 0x0d, 0x53, 0x65, 0x74, 0x54, 0x54, 0x4c, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x10,
+	0x0a, 0x03, 0x74, 0x74, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x74, 0x74, 0x6c,
+	0x22, 0x0d, 0x0a, 0x0b, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32,
+	0xa9, 0x01, 0x0a, 0x05, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12, 0x32, 0x0a, 0x03, 0x47, 0x65, 0x74,
+	0x12, 0x14, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x47, 0x65, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70,
+	0x62, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x32, 0x0a,
+	0x03, 0x53, 0x65, 0x74, 0x12, 0x14, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e,
+	0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61, 0x63,
+	0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x38, 0x0a, 0x06, 0x53, 0x65, 0x74, 0x54, 0x54, 0x4c, 0x12, 0x17, 0x2e, 0x63, 0x61,
+	0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x54, 0x54, 0x4c, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e,
+	0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x04, 0x5a, 0x02, 0x70,
+	0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -252,20 +323,23 @@ func file_pb_cache_proto_rawDescGZIP() []byte {
 	return file_pb_cache_proto_rawDescData
 }
 
-var file_pb_cache_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_pb_cache_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_pb_cache_proto_goTypes = []interface{}{
-	(*GetRequest)(nil),  // 0: cache.pb.GetRequest
-	(*GetResponse)(nil), // 1: cache.pb.GetResponse
-	(*SetRequest)(nil),  // 2: cache.pb.SetRequest
-	(*SetResponse)(nil), // 3: cache.pb.SetResponse
+	(*GetRequest)(nil),    // 0: cache.pb.GetRequest
+	(*GetResponse)(nil),   // 1: cache.pb.GetResponse
+	(*SetRequest)(nil),    // 2: cache.pb.SetRequest
+	(*SetTTLRequest)(nil), // 3: cache.pb.SetTTLRequest
+	(*SetResponse)(nil),   // 4: cache.pb.SetResponse
 }
 var file_pb_cache_proto_depIdxs = []int32{
 	0, // 0: cache.pb.Cache.Get:input_type -> cache.pb.GetRequest
 	2, // 1: cache.pb.Cache.Set:input_type -> cache.pb.SetRequest
-	1, // 2: cache.pb.Cache.Get:output_type -> cache.pb.GetResponse
-	3, // 3: cache.pb.Cache.Set:output_type -> cache.pb.SetResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	3, // 2: cache.pb.Cache.SetTTL:input_type -> cache.pb.SetTTLRequest
+	1, // 3: cache.pb.Cache.Get:output_type -> cache.pb.GetResponse
+	4, // 4: cache.pb.Cache.Set:output_type -> cache.pb.SetResponse
+	4, // 5: cache.pb.Cache.SetTTL:output_type -> cache.pb.SetResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -314,6 +388,18 @@ func file_pb_cache_proto_init() {
 			}
 		}
 		file_pb_cache_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetTTLRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pb_cache_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetResponse); i {
 			case 0:
 				return &v.state
@@ -332,7 +418,7 @@ func file_pb_cache_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pb_cache_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -360,6 +446,7 @@ const _ = grpc.SupportPackageIsVersion6
 type CacheClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	Set(ctx context.Context, in *SetRequest, opts ...grpc.CallOption) (*SetResponse, error)
+	SetTTL(ctx context.Context, in *SetTTLRequest, opts ...grpc.CallOption) (*SetResponse, error)
 }
 
 type cacheClient struct {
@@ -388,10 +475,20 @@ func (c *cacheClient) Set(ctx context.Context, in *SetRequest, opts ...grpc.Call
 	return out, nil
 }
 
+func (c *cacheClient) SetTTL(ctx context.Context, in *SetTTLRequest, opts ...grpc.CallOption) (*SetResponse, error) {
+	out := new(SetResponse)
+	err := c.cc.Invoke(ctx, "/cache.pb.Cache/SetTTL", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CacheServer is the server API for Cache service.
 type CacheServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	Set(context.Context, *SetRequest) (*SetResponse, error)
+	SetTTL(context.Context, *SetTTLRequest) (*SetResponse, error)
 }
 
 // UnimplementedCacheServer can be embedded to have forward compatible implementations.
@@ -403,6 +500,9 @@ func (*UnimplementedCacheServer) Get(context.Context, *GetRequest) (*GetResponse
 }
 func (*UnimplementedCacheServer) Set(context.Context, *SetRequest) (*SetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
+}
+func (*UnimplementedCacheServer) SetTTL(context.Context, *SetTTLRequest) (*SetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetTTL not implemented")
 }
 
 func RegisterCacheServer(s *grpc.Server, srv CacheServer) {
@@ -445,6 +545,24 @@ func _Cache_Set_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cache_SetTTL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetTTLRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CacheServer).SetTTL(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cache.pb.Cache/SetTTL",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CacheServer).SetTTL(ctx, req.(*SetTTLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Cache_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "cache.pb.Cache",
 	HandlerType: (*CacheServer)(nil),
@@ -456,6 +574,10 @@ var _Cache_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Set",
 			Handler:    _Cache_Set_Handler,
+		},
+		{
+			MethodName: "SetTTL",
+			Handler:    _Cache_SetTTL_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -16,10 +16,17 @@ message SetRequest {
   bytes value = 2;
 }
 
+message SetTTLRequest {
+  string key = 1;
+  bytes value = 2;
+  int64 ttl = 3;
+}
+
 message SetResponse {
 }
 
 service Cache {
   rpc Get(GetRequest) returns (GetResponse);
   rpc Set(SetRequest) returns (SetResponse);
+  rpc SetTTL(SetTTLRequest) returns (SetResponse);
 }

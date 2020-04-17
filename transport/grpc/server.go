@@ -3,6 +3,7 @@ package grpc
 import (
 	"context"
 	"net"
+	"time"
 
 	"google.golang.org/grpc/reflection"
 
@@ -29,6 +30,16 @@ func (s *Server) Get(ctx context.Context, req *pb.GetRequest) (*pb.GetResponse, 
 
 func (s *Server) Set(ctx context.Context, req *pb.SetRequest) (*pb.SetResponse, error) {
 	if err := s.Storage.Set(req.Key, req.Value); err != nil {
+		return nil, err
+	}
+
+	return &pb.SetResponse{}, nil
+}
+
+func (s *Server) SetTTL(ctx context.Context, req *pb.SetTTLRequest) (*pb.SetResponse, error) {
+	ttl := time.Duration(req.Ttl) * time.Second
+
+	if err := s.Storage.SetTTL(req.Key, req.Value, ttl); err != nil {
 		return nil, err
 	}
 

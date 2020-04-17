@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"errors"
+	"time"
 
 	"github.com/threeaccents/cache/pb"
 	"google.golang.org/grpc"
@@ -58,6 +59,20 @@ func (c *Client) Set(ctx context.Context, key string, value []byte) error {
 	}
 
 	if _, err := c.rpc.Set(ctx, req); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *Client) SetTTL(ctx context.Context, key string, value []byte, ttl time.Duration) error {
+	req := &pb.SetTTLRequest{
+		Key:   key,
+		Value: value,
+		Ttl:   int64(ttl.Seconds()),
+	}
+
+	if _, err := c.rpc.SetTTL(ctx, req); err != nil {
 		return err
 	}
 
