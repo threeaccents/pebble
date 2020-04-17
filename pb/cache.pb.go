@@ -279,6 +279,91 @@ func (*SetResponse) Descriptor() ([]byte, []int) {
 	return file_pb_cache_proto_rawDescGZIP(), []int{4}
 }
 
+type DeleteRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+}
+
+func (x *DeleteRequest) Reset() {
+	*x = DeleteRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_cache_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRequest) ProtoMessage() {}
+
+func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_cache_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return file_pb_cache_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeleteRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+type DeleteResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *DeleteResponse) Reset() {
+	*x = DeleteResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_cache_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteResponse) ProtoMessage() {}
+
+func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_cache_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
+func (*DeleteResponse) Descriptor() ([]byte, []int) {
+	return file_pb_cache_proto_rawDescGZIP(), []int{6}
+}
+
 var File_pb_cache_proto protoreflect.FileDescriptor
 
 var file_pb_cache_proto_rawDesc = []byte{
@@ -296,19 +381,26 @@ var file_pb_cache_proto_rawDesc = []byte{
 	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
 	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x10,
 	0x0a, 0x03, 0x74, 0x74, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x03, 0x74, 0x74, 0x6c,
-	0x22, 0x0d, 0x0a, 0x0b, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32,
-	0xa9, 0x01, 0x0a, 0x05, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12, 0x32, 0x0a, 0x03, 0x47, 0x65, 0x74,
-	0x12, 0x14, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x47, 0x65, 0x74, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70,
-	0x62, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x32, 0x0a,
-	0x03, 0x53, 0x65, 0x74, 0x12, 0x14, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e,
-	0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61, 0x63,
-	0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x38, 0x0a, 0x06, 0x53, 0x65, 0x74, 0x54, 0x54, 0x4c, 0x12, 0x17, 0x2e, 0x63, 0x61,
-	0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x54, 0x54, 0x4c, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e,
-	0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x04, 0x5a, 0x02, 0x70,
-	0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x0d, 0x0a, 0x0b, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x21, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b,
+	0x65, 0x79, 0x22, 0x10, 0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x32, 0xe6, 0x01, 0x0a, 0x05, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12, 0x32,
+	0x0a, 0x03, 0x47, 0x65, 0x74, 0x12, 0x14, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62,
+	0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61,
+	0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x32, 0x0a, 0x03, 0x53, 0x65, 0x74, 0x12, 0x14, 0x2e, 0x63, 0x61, 0x63, 0x68,
+	0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x15, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a, 0x06, 0x53, 0x65, 0x74, 0x54, 0x54, 0x4c,
+	0x12, 0x17, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x54,
+	0x54, 0x4c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x63, 0x61, 0x63, 0x68,
+	0x65, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x3b, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x12, 0x17, 0x2e, 0x63, 0x61, 0x63,
+	0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x70, 0x62, 0x2e, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x04, 0x5a,
+	0x02, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -323,23 +415,27 @@ func file_pb_cache_proto_rawDescGZIP() []byte {
 	return file_pb_cache_proto_rawDescData
 }
 
-var file_pb_cache_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_pb_cache_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_pb_cache_proto_goTypes = []interface{}{
-	(*GetRequest)(nil),    // 0: cache.pb.GetRequest
-	(*GetResponse)(nil),   // 1: cache.pb.GetResponse
-	(*SetRequest)(nil),    // 2: cache.pb.SetRequest
-	(*SetTTLRequest)(nil), // 3: cache.pb.SetTTLRequest
-	(*SetResponse)(nil),   // 4: cache.pb.SetResponse
+	(*GetRequest)(nil),     // 0: cache.pb.GetRequest
+	(*GetResponse)(nil),    // 1: cache.pb.GetResponse
+	(*SetRequest)(nil),     // 2: cache.pb.SetRequest
+	(*SetTTLRequest)(nil),  // 3: cache.pb.SetTTLRequest
+	(*SetResponse)(nil),    // 4: cache.pb.SetResponse
+	(*DeleteRequest)(nil),  // 5: cache.pb.DeleteRequest
+	(*DeleteResponse)(nil), // 6: cache.pb.DeleteResponse
 }
 var file_pb_cache_proto_depIdxs = []int32{
 	0, // 0: cache.pb.Cache.Get:input_type -> cache.pb.GetRequest
 	2, // 1: cache.pb.Cache.Set:input_type -> cache.pb.SetRequest
 	3, // 2: cache.pb.Cache.SetTTL:input_type -> cache.pb.SetTTLRequest
-	1, // 3: cache.pb.Cache.Get:output_type -> cache.pb.GetResponse
-	4, // 4: cache.pb.Cache.Set:output_type -> cache.pb.SetResponse
-	4, // 5: cache.pb.Cache.SetTTL:output_type -> cache.pb.SetResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	5, // 3: cache.pb.Cache.Delete:input_type -> cache.pb.DeleteRequest
+	1, // 4: cache.pb.Cache.Get:output_type -> cache.pb.GetResponse
+	4, // 5: cache.pb.Cache.Set:output_type -> cache.pb.SetResponse
+	4, // 6: cache.pb.Cache.SetTTL:output_type -> cache.pb.SetResponse
+	6, // 7: cache.pb.Cache.Delete:output_type -> cache.pb.DeleteResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -411,6 +507,30 @@ func file_pb_cache_proto_init() {
 				return nil
 			}
 		}
+		file_pb_cache_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pb_cache_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -418,7 +538,7 @@ func file_pb_cache_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pb_cache_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -447,6 +567,7 @@ type CacheClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	Set(ctx context.Context, in *SetRequest, opts ...grpc.CallOption) (*SetResponse, error)
 	SetTTL(ctx context.Context, in *SetTTLRequest, opts ...grpc.CallOption) (*SetResponse, error)
+	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
 type cacheClient struct {
@@ -484,11 +605,21 @@ func (c *cacheClient) SetTTL(ctx context.Context, in *SetTTLRequest, opts ...grp
 	return out, nil
 }
 
+func (c *cacheClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+	out := new(DeleteResponse)
+	err := c.cc.Invoke(ctx, "/cache.pb.Cache/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CacheServer is the server API for Cache service.
 type CacheServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	Set(context.Context, *SetRequest) (*SetResponse, error)
 	SetTTL(context.Context, *SetTTLRequest) (*SetResponse, error)
+	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 }
 
 // UnimplementedCacheServer can be embedded to have forward compatible implementations.
@@ -503,6 +634,9 @@ func (*UnimplementedCacheServer) Set(context.Context, *SetRequest) (*SetResponse
 }
 func (*UnimplementedCacheServer) SetTTL(context.Context, *SetTTLRequest) (*SetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetTTL not implemented")
+}
+func (*UnimplementedCacheServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
 func RegisterCacheServer(s *grpc.Server, srv CacheServer) {
@@ -563,6 +697,24 @@ func _Cache_SetTTL_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cache_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CacheServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cache.pb.Cache/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CacheServer).Delete(ctx, req.(*DeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Cache_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "cache.pb.Cache",
 	HandlerType: (*CacheServer)(nil),
@@ -578,6 +730,10 @@ var _Cache_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetTTL",
 			Handler:    _Cache_SetTTL_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Cache_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

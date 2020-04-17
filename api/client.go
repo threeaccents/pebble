@@ -78,3 +78,15 @@ func (c *Client) SetTTL(ctx context.Context, key string, value []byte, ttl time.
 
 	return nil
 }
+
+func (c *Client) Delete(ctx context.Context, key string) error {
+	req := &pb.DeleteRequest{
+		Key: key,
+	}
+
+	if _, err := c.rpc.Delete(ctx, req); err != nil {
+		return err
+	}
+
+	return nil
+}

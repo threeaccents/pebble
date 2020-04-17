@@ -46,6 +46,14 @@ func (s *Server) SetTTL(ctx context.Context, req *pb.SetTTLRequest) (*pb.SetResp
 	return &pb.SetResponse{}, nil
 }
 
+func (s *Server) Delete(ctx context.Context, req *pb.DeleteRequest) (*pb.DeleteResponse, error) {
+	if err := s.Storage.Delete(req.Key); err != nil {
+		return nil, err
+	}
+
+	return &pb.DeleteResponse{}, nil
+}
+
 func Serve(storage cache.Storage) error {
 	listen, err := net.Listen("tcp", ":4200")
 	if err != nil {

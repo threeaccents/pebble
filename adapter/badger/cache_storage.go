@@ -47,3 +47,16 @@ func (s *CacheStorage) Get(key string) ([]byte, error) {
 
 	return result, nil
 }
+
+func (s *CacheStorage) Delete(key string) error {
+	return s.DB.Update(func(txn *badger.Txn) error {
+		if err := txn.Delete([]byte(key)); err != nil {
+			if err == badger.ErrKeyNotFound {
+				return cache.ErrKeyNotFound
+			}
+			return err
+		}
+
+		return nil
+	})
+}

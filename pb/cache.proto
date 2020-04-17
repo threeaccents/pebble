@@ -25,8 +25,16 @@ message SetTTLRequest {
 message SetResponse {
 }
 
+message DeleteRequest {
+  string key = 1;
+}
+
+message DeleteResponse {
+}
+
 service Cache {
   rpc Get(GetRequest) returns (GetResponse);
   rpc Set(SetRequest) returns (SetResponse);
   rpc SetTTL(SetTTLRequest) returns (SetResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
 }
