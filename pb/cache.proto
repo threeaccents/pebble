@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-package cache;
+package cache.pb;
+option go_package = "pb";
 
 message GetRequest {
   string key = 1;
