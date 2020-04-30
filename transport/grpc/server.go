@@ -2,12 +2,7 @@ package grpc
 
 import (
 	"context"
-	"net"
 	"time"
-
-	"google.golang.org/grpc/reflection"
-
-	"google.golang.org/grpc"
 
 	"github.com/threeaccents/cache"
 	"github.com/threeaccents/cache/pb"
@@ -52,21 +47,4 @@ func (s *Server) Delete(ctx context.Context, req *pb.DeleteRequest) (*pb.DeleteR
 	}
 
 	return &pb.DeleteResponse{}, nil
-}
-
-func Serve(storage cache.Storage) error {
-	listen, err := net.Listen("tcp", ":4200")
-	if err != nil {
-		return err
-	}
-
-	grpcServer := grpc.NewServer()
-
-	pb.RegisterCacheServer(grpcServer, &Server{
-		Storage: storage,
-	})
-
-	reflection.Register(grpcServer)
-
-	return grpcServer.Serve(listen)
 }

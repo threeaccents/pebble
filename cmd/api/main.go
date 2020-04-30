@@ -11,6 +11,7 @@ import (
 
 var (
 	dbDirPtr = flag.String("db-dir", "./db", "the directory were the cache is stored")
+	portPtr  = flag.String("port", ":4200", "the port were to run the grpc server")
 )
 
 func main() {
@@ -25,5 +26,5 @@ func main() {
 		DB: db,
 	}
 
-	log.Fatal(grpc.Serve(storage))
+	log.Fatal(grpc.Serve(storage, grpc.ServePort(*portPtr)))
 }
