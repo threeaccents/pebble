@@ -3,8 +3,8 @@ package grpc
 import (
 	"testing"
 
+	"github.com/oriiolabs/pebble/mock"
 	"github.com/stretchr/testify/assert"
-	"github.com/threeaccents/cache/mock"
 )
 
 const testPort = ":5555"

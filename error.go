@@ -1,4 +1,4 @@
-package cache
+package pebble
 
 const (
 	ErrKeyNotFound = Error("key not found")

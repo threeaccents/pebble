@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/threeaccents/cache/pb"
+	"github.com/oriiolabs/pebble/pb"
 )
 
 func (s *Server) Get(ctx context.Context, req *pb.GetRequest) (*pb.GetResponse, error) {

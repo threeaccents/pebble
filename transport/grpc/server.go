@@ -3,8 +3,9 @@ package grpc
 import (
 	"net"
 
-	"github.com/threeaccents/cache"
-	"github.com/threeaccents/cache/pb"
+	"github.com/oriiolabs/pebble"
+
+	"github.com/oriiolabs/pebble/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -12,7 +13,7 @@ import (
 const defaultPort = ":4200"
 
 type Server struct {
-	Storage cache.Storage
+	Storage pebble.Storage
 	Port    string
 }
 
@@ -22,7 +23,7 @@ func ServerPort(port string) func(*Server) {
 	}
 }
 
-func NewServer(storage cache.Storage, opts ...func(*Server)) *Server {
+func NewServer(storage pebble.Storage, opts ...func(*Server)) *Server {
 	s := &Server{
 		Storage: storage,
 		Port:    defaultPort,

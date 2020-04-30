@@ -3,8 +3,9 @@ package badger
 import (
 	"time"
 
+	"github.com/oriiolabs/pebble"
+
 	"github.com/dgraph-io/badger/v2"
-	"github.com/threeaccents/cache"
 )
 
 type CacheStorage struct {
@@ -31,7 +32,7 @@ func (s *CacheStorage) Get(key string) ([]byte, error) {
 		item, err := txn.Get([]byte(key))
 		if err != nil {
 			if err == badger.ErrKeyNotFound {
-				return cache.ErrKeyNotFound
+				return pebble.ErrKeyNotFound
 			}
 			return err
 		}
@@ -52,7 +53,7 @@ func (s *CacheStorage) Delete(key string) error {
 	return s.DB.Update(func(txn *badger.Txn) error {
 		if err := txn.Delete([]byte(key)); err != nil {
 			if err == badger.ErrKeyNotFound {
-				return cache.ErrKeyNotFound
+				return pebble.ErrKeyNotFound
 			}
 			return err
 		}

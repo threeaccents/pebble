@@ -16,7 +16,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/threeaccents/cache/api"
+	"github.com/oriiolabs/pebble/api"
 )
 
 func main() {

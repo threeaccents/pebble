@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cache.pb;
+package pebble.pb;
 option go_package = "pb";
 
 message GetRequest {

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/threeaccents/cache/pb"
+	"github.com/oriiolabs/pebble/pb"
 	"google.golang.org/grpc"
 )
 

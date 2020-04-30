@@ -4,9 +4,9 @@ import (
 	"flag"
 	"log"
 
-	"github.com/threeaccents/cache/adapter/badger"
+	"github.com/oriiolabs/pebble/adapter/badger"
 
-	"github.com/threeaccents/cache/transport/grpc"
+	"github.com/oriiolabs/pebble/transport/grpc"
 )
 
 var (
