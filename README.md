@@ -1,4 +1,4 @@
-# cache
+# Pebble
 
 GRPC based cache with a customizable backend. Default is badgerDB.
 
