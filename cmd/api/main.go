@@ -26,5 +26,10 @@ func main() {
 		DB: db,
 	}
 
-	log.Fatal(grpc.Serve(storage, grpc.ServePort(*portPtr)))
+	s := grpc.NewServer(
+		storage,
+		grpc.ServerPort(*portPtr),
+	)
+
+	log.Fatal(s.ListenAndServe())
 }

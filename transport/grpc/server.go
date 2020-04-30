@@ -1,50 +1,51 @@
 package grpc
 
 import (
-	"context"
-	"time"
+	"net"
 
 	"github.com/threeaccents/cache"
 	"github.com/threeaccents/cache/pb"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
+
+const defaultPort = ":4200"
 
 type Server struct {
 	Storage cache.Storage
+	Port    string
 }
 
-func (s *Server) Get(ctx context.Context, req *pb.GetRequest) (*pb.GetResponse, error) {
-	value, err := s.Storage.Get(req.Key)
+func ServerPort(port string) func(*Server) {
+	return func(opt *Server) {
+		opt.Port = port
+	}
+}
+
+func NewServer(storage cache.Storage, opts ...func(*Server)) *Server {
+	s := &Server{
+		Storage: storage,
+		Port:    defaultPort,
+	}
+
+	for _, option := range opts {
+		option(s)
+	}
+
+	return s
+}
+
+func (s *Server) ListenAndServe() error {
+	listen, err := net.Listen("tcp", s.Port)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return &pb.GetResponse{
-		Value: value,
-	}, nil
-}
+	grpcServer := grpc.NewServer()
 
-func (s *Server) Set(ctx context.Context, req *pb.SetRequest) (*pb.SetResponse, error) {
-	if err := s.Storage.Set(req.Key, req.Value); err != nil {
-		return nil, err
-	}
+	pb.RegisterCacheServer(grpcServer, s)
 
-	return &pb.SetResponse{}, nil
-}
+	reflection.Register(grpcServer)
 
-func (s *Server) SetTTL(ctx context.Context, req *pb.SetTTLRequest) (*pb.SetResponse, error) {
-	ttl := time.Duration(req.Ttl) * time.Second
-
-	if err := s.Storage.SetTTL(req.Key, req.Value, ttl); err != nil {
-		return nil, err
-	}
-
-	return &pb.SetResponse{}, nil
-}
-
-func (s *Server) Delete(ctx context.Context, req *pb.DeleteRequest) (*pb.DeleteResponse, error) {
-	if err := s.Storage.Delete(req.Key); err != nil {
-		return nil, err
-	}
-
-	return &pb.DeleteResponse{}, nil
+	return grpcServer.Serve(listen)
 }
