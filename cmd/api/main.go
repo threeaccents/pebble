@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 
 	"github.com/threeaccents/cache/adapter/badger"
@@ -8,8 +9,14 @@ import (
 	"github.com/threeaccents/cache/transport/grpc"
 )
 
+var (
+	dbDirPtr = flag.String("db-dir", "./db", "the directory were the cache is stored")
+)
+
 func main() {
-	db, err := badger.Open("./db")
+	flag.Parse()
+
+	db, err := badger.Open(*dbDirPtr)
 	if err != nil {
 		panic(err)
 	}
