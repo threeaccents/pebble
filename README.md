@@ -1,5 +1,10 @@
 # cache
 
+Run 
+```bash
+./cache --db-dir="path/to/db" --port=":5555"
+```
+
 Example
 
 ```go
