@@ -3,8 +3,10 @@ package main
 import (
 	"flag"
 	"log"
+	"os"
 
 	"github.com/oriiolabs/pebble/adapter/badger"
+	"github.com/rs/zerolog"
 
 	"github.com/oriiolabs/pebble/transport/grpc"
 )
@@ -17,13 +19,17 @@ var (
 func main() {
 	flag.Parse()
 
+	logger := zerolog.New(os.Stdout).With().Timestamp().Str("app", "oriio").Logger()
+	logger.Info().Msg("Starting Service...")
+
 	db, err := badger.Open(*dbDirPtr)
 	if err != nil {
 		panic(err)
 	}
 
 	storage := &badger.CacheStorage{
-		DB: db,
+		DB:  db,
+		Log: logger,
 	}
 
 	s := grpc.NewServer(
@@ -31,7 +37,7 @@ func main() {
 		grpc.ServerPort(*portPtr),
 	)
 
-	log.Println("Listening on port", *portPtr)
+	logger.Info().Str("port", *portPtr).Msg("listening")
 
 	log.Fatal(s.ListenAndServe())
 }
