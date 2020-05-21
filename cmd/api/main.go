@@ -10,8 +10,8 @@ import (
 )
 
 var (
-	dbDirPtr = flag.String("db-dir", "./db", "the directory were the cache is stored")
-	portPtr  = flag.String("port", ":4200", "the port were to run the grpc server")
+	dbDirPtr = flag.String("dbdir", "./db", "the directory were the cache is stored")
+	portPtr  = flag.String("port", ":4210", "the port were to run the grpc server")
 )
 
 func main() {
@@ -30,6 +30,8 @@ func main() {
 		storage,
 		grpc.ServerPort(*portPtr),
 	)
+
+	log.Println("Listening on port", *portPtr)
 
 	log.Fatal(s.ListenAndServe())
 }
