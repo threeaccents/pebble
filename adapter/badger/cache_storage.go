@@ -4,21 +4,26 @@ import (
 	"time"
 
 	"github.com/oriiolabs/pebble"
+	"github.com/rs/zerolog"
 
 	"github.com/dgraph-io/badger/v2"
 )
 
 type CacheStorage struct {
 	DB *badger.DB
+
+	Log zerolog.Logger
 }
 
 func (s *CacheStorage) Set(key string, value []byte) error {
+	s.Log.Info().Str("key", key).Msg("setting key")
 	return s.DB.Update(func(txn *badger.Txn) error {
 		return txn.Set([]byte(key), value)
 	})
 }
 
 func (s *CacheStorage) SetTTL(key string, value []byte, ttl time.Duration) error {
+	s.Log.Info().Str("key", key).Msg("setting key")
 	return s.DB.Update(func(txn *badger.Txn) error {
 		entry := badger.NewEntry([]byte(key), value).WithTTL(ttl)
 		return txn.SetEntry(entry)
@@ -27,6 +32,7 @@ func (s *CacheStorage) SetTTL(key string, value []byte, ttl time.Duration) error
 
 func (s *CacheStorage) Get(key string) ([]byte, error) {
 	var result []byte
+	s.Log.Info().Str("key", key).Msg("getting key")
 
 	err := s.DB.View(func(txn *badger.Txn) error {
 		item, err := txn.Get([]byte(key))
@@ -43,8 +49,11 @@ func (s *CacheStorage) Get(key string) ([]byte, error) {
 		})
 	})
 	if err != nil {
+		s.Log.Info().Str("key", key).Msg("key not found")
 		return nil, err
 	}
+
+	s.Log.Info().Str("key", key).Msg("key found")
 
 	return result, nil
 }
